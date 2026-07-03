@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOUSHIK UPPALA</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@3
+    00;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding:0; }
+    
+    :root {
+    --blue: #1a73e8;
+    --blue-dark: #1557b0;
+    --blue-light: #e8f0fe;
+    --blue-mid: #4285f4;
+    --green: #34a853;
+    --red: #ea4335;
+    --orange: #fbbc04;
+    --text: #202124;
+    --muted: #5f6368;
+    --border: #dadce0;
+    --bg: #f8f9fa;
+    --white: #ffffff;
+}
+    body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    color: var(--text);
+    }
+    .navbar {
+    background: var(--white);
+    border-bottom: 3px solid var(--blue);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+    .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    }
+    .nav-icon {
+    width: 38px; height: 38px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    }
+    .nav-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    }
+    .nav-title span:first-child {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.3px;
+    }
+    .nav-title span:last-child {
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+    .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    }
+    .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    }
+    .nav-links a:hover { background: var(--blue-light); color: var(--blue); }
+    .nav-links a.active {
+    background: var(--blue);
+    color: white;
+    }
+    .hero-banner {
+    background: linear-gradient(135deg, var(--blue-dark) 0%,var(--blue) 50%, var(--blue-mid) 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 24px 50px;
+    position: relative;
+    overflow: hidden;
+    }
+    .hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06)
+    1px, transparent 1px);
+    background-size: 28px 28px;
+    }
+    .hero-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 40px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    }
+    .hero-badge::before { content: '🎓'; font-size: 0.85rem; }
+    .hero-banner h1 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    }
+    .hero-banner p {
+    font-size: 0.875rem;
+    opacity: 0.88;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 300;
+    }
+    .main {
+    max-width: 980px;
+    margin: -20px auto 60px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+    }
+    .info-panel { display: flex; flex-direction: column; gap: 16px; }
+    .info-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .info-card h3 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    }
+    .benefit-list { list-style: none; display: flex; flex-direction:column; gap: 10px; }
+    .benefit-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+    }
+    .benefit-icon {
+    width: 22px; height: 22px;
+    background: var(--blue-light);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.65rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+    }
+    .branch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    }
+    .branch-tag {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 7px 10px;
+    border-radius: 7px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    }
+    .quote-card {
+    background: var(--blue);
+    color: white;
+    border-radius: 12px;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+    }
+    .quote-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 12px;
+    font-size: 6rem;
+    opacity: 0.15;
+    font-family: Georgia, serif;
+    line-height: 1;
+    }
+    .quote-card p {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    opacity: 0.92;
+    font-style: italic;
+position: relative;
+}
+.quote-card .quote-author {
+margin-top: 10px;
+font-size: 0.72rem;
+font-weight: 600;
+opacity: 0.75;
+font-style: normal;
+}
+
+
+.form-card {
+background: var(--white);
+border-radius: 12px;
+border: 1px solid var(--border);
+padding: 32px 28px;
+box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+align-self: start;
+}
+.form-header { margin-bottom: 24px; }
+.form-header h2 {
+font-size: 1.2rem;
+font-weight: 700;
+color: var(--text);
+margin-bottom: 4px;
+letter-spacing: -0.2px;
+}
+.form-header p { font-size: 0.78rem; color: var(--muted); }
+
+/* Alert */
+.alert {
+display: none;
+padding: 10px 14px;
+border-radius: 8px;
+font-size: 0.79rem;
+line-height: 1.5;
+margin-bottom: 16px;
+}
+.alert.error { display: block; background: #fce8e6; border-left:
+3px solid var(--red); color: #c5221f; }
+.alert.success { display: block; background: #e6f4ea; border-left:
+3px solid var(--green); color: #137333; }
+
+/* Field */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap:
+12px; }
+.field { margin-bottom: 14px; }
+.field label {
+display: block;
+font-size: 0.75rem;
+font-weight: 600;
+color: var(--text);
+margin-bottom: 5px;
+}
+.field input,
+.field select {
+width: 100%;
+padding: 10px 12px;
+font-family: 'Poppins', sans-serif;
+font-size: 0.82rem;
+color: var(--text);
+background: var(--white);
+border: 1.5px solid var(--border);
+border-radius: 8px;
+outline: none;
+transition: border-color 0.2s, box-shadow 0.2s;
+caret-color: var(--blue);
+}
+.field input::placeholder { color: #aaa; }
+.field input:focus,
+.field select:focus {
+border-color: var(--blue);
+box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
+}
+.field input.has-error { border-color: var(--red); background:
+#fff8f8; }
+.field select { cursor: pointer; color: var(--text); }
+
+
+.pw-wrap { position: relative; }
+.pw-toggle {
+position: absolute;
+right: 10px; top: 50%;
+transform: translateY(-50%);
+background: none; border: none;
+font-size: 0.7rem; font-family: 'Poppins', sans-serif;
+font-weight: 600; color: var(--blue);
+cursor: pointer; padding: 2px 4px;
+transition: color 0.15s;
+}
+.pw-toggle:hover { color: var(--blue-dark); }
+
+/* Strength */
+.strength-bar { display: flex; gap: 4px; margin-top: 6px; }
+.seg {
+height: 3px; flex: 1; border-radius: 10px;
+background: #e8eaed;
+transition: background 0.3s;
+}
+.strength-label {
+font-size: 0.68rem; margin-top: 4px;
+min-height: 14px; color: var(--muted);
+}
+.section-label {
+font-size: 0.68rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.6px;
+color: var(--blue);
+background: var(--blue-light);
+padding: 5px 10px;
+border-radius: 5px;
+margin-bottom: 14px;
+margin-top: 4px;
+display: inline-block;
+}
+
+/* Checkbox */
+.check-row {
+display: flex; align-items: flex-start;
+gap: 9px; margin-bottom: 18px;
+}
+.check-row input[type="checkbox"] {
+width: 15px; height: 15px;
+flex-shrink: 0; margin-top: 2px;
+accent-color: var(--blue); cursor: pointer;
+}
+.check-row label {
+font-size: 0.76rem; color: var(--muted);
+line-height: 1.55; cursor: pointer;
+}
+
+.check-row a { color: var(--blue); text-decoration: none; font-weight: 500; }
+
+.check-row a:hover { text-decoration: underline; }
+
+/* Submit */
+.btn-submit {
+width: 100%;
+padding: 12px;
+font-family: 'Poppins', sans-serif;
+font-size: 0.875rem;
+font-weight: 600;
+color: white;
+background: var(--blue);
+border: none; border-radius: 8px;
+cursor: pointer; position: relative; overflow: hidden;
+transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+box-shadow: 0 2px 8px rgba(26,115,232,0.35);
+}
+.btn-submit:hover { background: var(--blue-dark); box-shadow:
+0 4px 14px rgba(26,115,232,0.45); }
+.btn-submit:active { transform: scale(0.99); }
+.btn-submit.loading .btn-label { opacity: 0; }
+.btn-submit.loading::after {
+content: '';
+position: absolute;
+width: 16px; height: 16px;
+border: 2px solid rgba(255,255,255,0.3);
+border-top-color: white;
+border-radius: 50%;
+top: 50%; left: 50%;
+transform: translate(-50%,-50%);
+animation: spin 0.65s linear infinite;
+}
+@keyframes spin { to { transform: translate(-50%,-50%)
+rotate(360deg); } }
+.signin-link{
+    text-align:center;
+    margin-top:16px;
+    font: size 0.77em;
+    color:var(--muted);
+}
+.signin-link a { color: var(--blue); font-weight: 600; text-decoration: none; }
+
+.signin-link a:hover { text-decoration: underline; }
+.footer {
+background: var(--text);
+color: rgba(255,255,255,0.7);
+text-align: center;
+padding: 20px 24px;
+font-size: 0.75rem;
+line-height: 1.7;
+}
+.footer a { color: rgba(255,255,255,0.85); text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+.footer strong { color: white; }
+@media (max-width: 740px) {
+.main { grid-template-columns: 1fr; margin-top: -10px; }
+.info-panel { order: 2; }
+.form-card { order: 1; }
+.nav-links { display: none; }
+}
+@media (max-width: 420px) {
+.form-card { padding: 24px 18px; }
+.field-row { grid-template-columns: 1fr; }
+.branch-grid{ grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="nav-brand"
+        href="https://bhanuportfolio-two.vercel.app/" target="_blank">
+        <div class="nav-icon">BP</div>
+        <div class="nav-title">
+            <span>KARTHEEK CSE FACULTY</span>
+            <span>B.Tech Study Materials</span>
+            </div>
+            </a>
+            <div class="nav-links">
+            <a href="https://ravulakartheek.blogspot.com/"
+            target="_blank">Home</a>
+            
+            <a href="https://ravulakartheek.blogspot.com/p/1st-year-
+            study-materials.html" target="_blank">Materials</a>
+            
+            <a href="https://ravulakartheek.blogspot.com/p/tutorials-
+            for-beginners.html" target="_blank">Tutorials</a>
+            
+            <a href="#" class="active">Register</a>
+            </div>
+
+           
+        </nav>
+        <div class="hero-banner">
+            <div class="hero-content">
+            <div class="hero-badge">Student Portal</div>
+            <h1>Register for Free Access</h1>
+        <p>Join the KARTHEEK CSE FACULTY community and get
+            instant access to B.Tech notes, lab manuals, question papers
+            &amp; tutorials.</p>
+            </div>
+            </div>
+            
+            <!-- ── MAIN ── -->
+            <div class="main">
+            
+            <!-- Left info panel -->
+            <div class="info-panel">
+            
+            <div class="info-card">
+            <h3>📚 What You Get</h3>
+            <ul class="benefit-list">
+            <li>
+            <div class="benefit-icon">✓</div>
+            Unit-wise handwritten notes for all B.Tech subjects
+            </li>
+            <li>
+            <div class="benefit-icon">✓</div>
+            Previous year question papers with solutions
+        </li>
+        <li>
+        <div class="benefit-icon">✓</div>
+        Lab manuals for all programming &amp; core subjects
+        </li>
+        <li>
+        <div class="benefit-icon">✓</div>
+        Tutorials on Python, Java, C, Web Development &amp;
+        more
+        </li>
+        <li>
+        <div class="benefit-icon">✓</div>
+        Latest syllabus for R20 / R22 regulations
+        </li>
+        <li>
+        <div class="benefit-icon">✓</div>
+        Career guidance, placement tips &amp; AMCAT prep
+        resources
+        </li>
+        </ul>
+        </div>
+        <div class="info-card">
+    <h3>🏛 Branches Covered</h3>
+    <div class="branch-grid">
+    <div class="branch-tag">💻 CSE</div>
+    <div class="branch-tag">📊 Data Science</div>
+    <div class="branch-tag"> AI &amp; ML</div>
+    <div class="branch-tag">🔐 Cyber Security</div>
+    </div>
+    </div>
+
+    <div class="quote-card">
+    <p>Education is the most powerful weapon which you can
+    use to change the world.</p>
+    <div class="quote-author">— Nelson Mandela</div>
+    </div>
+
+    <div class="info-card">
+    <h3>👨🏫 About the Faculty</h3>
+    <ul class="benefit-list">
+    <li>
+        <div class="benefit-icon">🎓</div>
+<span><strong>Ravula Kartheek</strong> — M.Tech
+(PhD), CSE Faculty with expertise in Java, Web Dev &amp; AI/ML
+domains.</span>
+</li>
+<li>
+<div class="benefit-icon">🌐</div>
+<span>Visit the blog: <a
+href="https://ravulakartheek.blogspot.com/" target="_blank"
+
+style="color:var(--blue);font-weight:500;">ravulakartheek.blogspot.com</a></span>
+
+</li>
+</ul>
+</div>
+
+</div>
+<div class="form-card">
+
+    <div class="form-header">
+    <h2>Create Student Account</h2>
+    <p>Fill in your details to get started. It's completely free.</p>
+</div>
+
+<div id="alert-box" class="alert"></div>
+
+<form id="reg-form" action="/register" method="POST" novalidate>
+
+<!-- Personal info -->
+<div class="section-label">Personal Info</div>
+
+<div class="field-row">
+<div class="field">
+<label for="fname">First Name *</label>
+<input type="text" id="fname" name="fname"
+placeholder="Kartheek" autocomplete="given-name" />
+</div>
+<div class="field">
+<label for="lname">Last Name *</label>
+<input type="text" id="lname" name="lname"
+placeholder="Brahmin" autocomplete="family-name" />
+</div>
+</div>
+
+<div class="field">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email"
+placeholder="student@college.edu" autocomplete="email" />
+</div>
+
+<!-- Academic info -->
+<div class="section-label">Academic Info</div>
+
+<div class="field-row">
+<div class="field">
+<label for="branch">Branch *</label>
+<select id="branch" name="branch">
+<option value="" disabled selected>Select
+branch</option>
+<option value="CSE">CSE</option>
+<option value="Data Science">Data Science</option>
+<option value="AI & ML">AI &amp; ML</option>
+<option value="Cyber Security">Cyber Security</option>
+<option value="IT">IT</option>
+<option value="ECE">ECE</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<div class="field">
+<label for="year">Year *</label>
+<select id="year" name="year">
+<option value="" disabled selected>Select year</option>
+<option value="1">1st Year</option>
+<option value="2">2nd Year</option>
+<option value="3">3rd Year</option>
+<option value="4">4th Year</option>
+</select>
+</div>
+</div>
+
+<div class="field">
+<label for="college">College Name</label>
+<input type="text" id="college" name="college"
+placeholder="e.g. Bapatla College of Engineering" />
+</div>
+<!-- Account info -->
+<div class="section-label">Account Info</div>
+
+<div class="field">
+<label for="username">Username *</label>
+<input type="text" id="username" name="username"
+placeholder="e.g. kartheek_cse26" autocomplete="username" />
+</div>
+
+<div class="field">
+<label for="password">Password *</label>
+<div class="pw-wrap">
+<input type="password" id="password" name="password"
+placeholder="Min. 8 characters" autocomplete="new-password" />
+
+<button type="button" class="pw-toggle" id="pw-toggle">Show</button>
+
+</div>
+<div class="strength-bar">
+<div class="seg" id="s1"></div>
+<div class="seg" id="s2"></div>
+<div class="seg" id="s3"></div>
+<div class="seg" id="s4"></div>
+</div>
+<div class="strength-label" id="strength-label"></div>
+</div>
+
+<div class="check-row">
+<input type="checkbox" id="terms" name="terms" />
+<label for="terms">
+I agree to the <a href="https://ravulakartheek.blogspot.com/p/privacy-policy-page.html" target="_blank">Privacy Policy</a>
+
+and <a
+href="https://ravulakartheek.blogspot.com/p/disclaimer.html"
+target="_blank">Disclaimer</a> of KARTHEEK CSE FACULTY.
+</label>
+</div>
+
+<button type="submit" class="btn-submit" id="submit-btn">
+<span class="btn-label">🎓 Create My Account</span>
+</button>
+
+<p class="signin-link">Already registered? <a
+href="/login">Sign in here</a></p>
+</form>
+</div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+<p>
+<strong>KARTHEEK CSE FACULTY</strong> — Quality
+B.Tech Study Materials for CSE, Data Science, AI&amp;ML &amp;
+Cyber Security
+</p>
+<p style="margin-top:6px;">
+<a href="https://ravulakartheek.blogspot.com/"
+target="_blank">Blog</a> &nbsp;·&nbsp;
+
+<a href="https://ravulakartheek.blogspot.com/p/about-
+us.html" target="_blank">About</a> &nbsp;·&nbsp;
+
+<a href="https://ravulakartheek.blogspot.com/p/contact-
+us.html" target="_blank">Contact</a> &nbsp;·&nbsp;
+
+<a href="https://ravulakartheek.blogspot.com/p/privacy-
+policy-page.html" target="_blank">Privacy Policy</a>
+
+</p>
+<p style="margin-top:8px;font-size:0.7rem;opacity:0.55;">
+    Developed by Ravula Kartheek M.Tech (PhD) | CSE Faculty
+    </p>
+    </footer>
+    
+    <script>
+    // Show / Hide password
+    const pwInput = document.getElementById('password');
+    const pwToggle = document.getElementById('pw-toggle');
+    pwToggle.addEventListener('click', () => {
+    const show = pwInput.type === 'password';
+    pwInput.type = show ? 'text' : 'password';
+    pwToggle.textContent = show ? 'Hide' : 'Show';
+    });
+    
+    // Password strength
+    const segs = [1,2,3,4].map(n => document.getElementById('s'
+    + n));
+    const sLabel = document.getElementById('strength-label');
+    const colors = ['#ea4335', '#fbbc04', '#34a853', '#1a73e8'];
+    const words = ['Weak', 'Fair', 'Strong', 'Very Strong'];
+    pwInput.addEventListener('input', () => {
+const v = pwInput.value;
+let sc = 0;
+if (v.length >= 8) sc++;
+if (/[A-Z]/.test(v)) sc++;
+if (/[0-9]/.test(v)) sc++;
+if (/[^A-Za-z0-9]/.test(v)) sc++;
+segs.forEach((s, i) => {
+s.style.background = (v && i < sc) ? colors[sc - 1] : '#e8eaed';
+});
+sLabel.textContent = v ? words[sc - 1] : '';
+sLabel.style.color = v ? colors[sc - 1] : '';
+});
+
+// Alert helpers
+const alertBox = document.getElementById('alert-box');
+function showAlert(msg, type) {
+alertBox.textContent = msg;
+alertBox.className = 'alert ' + type;
+alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function clearAlert() {
+alertBox.textContent = '';
+alertBox.className = 'alert';
+}
+
+// Client-side validation
+
+document.getElementById('reg-form').addEventListener('submit', function (e) {clearAlert();
+
+const G = id => document.getElementById(id);
+['fname','lname','email','username','password'].forEach(id =>
+G(id).classList.remove('has-error'));
+
+const fname = G('fname').value.trim();
+const lname = G('lname').value.trim();
+const email = G('email').value.trim();
+const branch = G('branch').value;
+const year = G('year').value;
+const username = G('username').value.trim();
+const password = pwInput.value;
+const terms = G('terms').checked;
+let err = null, errId = null;
+
+if (!fname) { err = 'First name is required.';
+errId = 'fname'; }
+else if (!lname) { err = 'Last name is required.';
+errId = 'lname'; }
+else if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+{ err = 'Please enter a valid email address.';
+errId = 'email'; }
+else if (!branch) { err = 'Please select your branch.'; }
+else if (!year) { err = 'Please select your academic year.';
+}
+else if (!username || username.length < 3)
+{ err = 'Username must be at least 3 characters.'; errId = 'username'; }
+else if (!/^[a-zA-Z0-9_.\-]{3,20}$/.test(username))
+{ err = 'Username may only contain letters,numbers, _ . or -'; errId = 'username'; }
+else if (password.length < 8)
+{ err = 'Password must be at least 8 characters.'; errId = 'password'; }
+else if (!terms) { err = 'Please accept the Privacy Policy to continue.'; }
+
+if (err) {
+e.preventDefault();
+if (errId) G(errId).classList.add('has-error');
+showAlert('⚠ ' + err, 'error');
+return;
+}
+
+G('submit-btn').classList.add('loading');});
+</script>
+</body>
+</html>
